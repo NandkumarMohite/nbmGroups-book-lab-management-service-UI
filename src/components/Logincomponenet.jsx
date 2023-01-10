@@ -18,7 +18,7 @@ function Logincomponenet() {
     "password": password
   }
 function handleClick(){
-  fetch('http://localhost:8888/login', {
+  fetch('http://localhost:8888/findingtheuser', {
 
     method: 'POST',
     mode: 'cors',
@@ -34,7 +34,7 @@ function handleClick(){
 
   return (
     <>
-    
+    <div className="pyar">
       <div className="container">
         <div className="row justify-content-md-center">
           <h1>Login </h1>
@@ -51,7 +51,7 @@ function handleClick(){
           <button className="btn" onClick={handleClick}>Submit</button>
         </div>
       </div>
-      
+      </div>
     </>
   );
 }
