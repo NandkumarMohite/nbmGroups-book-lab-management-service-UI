@@ -4,7 +4,7 @@ function Deleteuserinformationcomponent() {
 
     let emailId = 'n.b.mohite88@gmail.com';
     let password2 = 'Raju@2810';
-
+    
     const [User, setUser] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

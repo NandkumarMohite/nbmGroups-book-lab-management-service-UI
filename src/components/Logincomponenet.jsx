@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'; 
 
 function Logincomponenet() {
   const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ function Logincomponenet() {
     "password": password
   }
   function handleClick() {
+    
     fetch('http://localhost:8888/findingtheuser', {
 
       method: 'POST',
@@ -36,11 +38,11 @@ function Logincomponenet() {
       result.json().then((Response) => {
         if (Response.emailId != null) {
           console.log(Response.emailId)
-          // alert("Signed In");
+          toast.success('Success Message')
           localStorage.setItem('UserInformation', JSON.stringify(Response))
           navigate("/")
         } else {
-          alert("no accout Signed In");
+          toast.error("Don't have account please Signup")
         }
       })
     })
@@ -69,7 +71,7 @@ function Logincomponenet() {
           </fieldset>
         </form>
       </div>
-      
+
     </>
   );
 }

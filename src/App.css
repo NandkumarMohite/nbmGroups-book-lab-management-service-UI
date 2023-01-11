@@ -171,6 +171,7 @@ span{
 footer{
   background: #f1f1f1;
   padding: 90px 0;
+  position: relative;
 }
 
 .footer-container{
@@ -567,3 +568,54 @@ body {
 
 
 
+
+.student-profile .card {
+  border-radius: 10px;
+}
+.student-profile .card .card-header .profile_img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 10px auto;
+  border: 10px solid #ccc;
+  border-radius: 50%;
+}
+.student-profile .card h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.student-profile .card p {
+  font-size: 16px;
+  color: #000;
+}
+.student-profile .table th,
+.student-profile .table td {
+  font-size: 14px;
+  padding: 5px 10px;
+  color: #000;
+}
+p.mb-0 {
+  margin: 5px;
+}
+.card-body{
+margin: 10px;
+}
+
+
+
+.navheader{        
+  margin-top: 15px;     
+  font-size: 18px;       
+  color :black !important;        
+  background-color: #b3beca!important        
+}     
+.btnspace    
+{    
+margin: 15px;    
+} 
+
+
+
+.Toastify__toast-container.Toastify__toast-container--top-right {
+  margin-top: 93px;
+}

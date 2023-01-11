@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 
+import {  toast } from 'react-toastify'; 
 
 
 function Signupcomponent() {
@@ -97,36 +98,49 @@ function Signupcomponent() {
     }
 
     function handleClick() {
-        if(password===passwordcheck){
-        if (jsonData.emailId === "") {
-            alert("emailId can't be empty")
-            
-        }
-        else if(jsonData.password === ""){
-            alert("password can't be empty")
-        }
-        else if(jsonData.firstName === ""){
-            alert("firstName can't be empty")
-        }
-        else if(jsonData.lastName === ""){
-            alert("lastName can't be empty")
-        }
-        else {
-            fetch('http://localhost:8888/signup', {
+        if (password === passwordcheck) {
+            if (jsonData.emailId === "") {
+                toast.info('Please fill email Id')
 
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'accept': 'application/json'
-                },
-                body: JSON.stringify(jsonData)
+            }
+            else if (jsonData.password === "") {
+                toast.info('Please fill password')
+            }
+            else if (jsonData.firstName === "") {
+                toast.info('Please fill First Name')
+            }
+            else if (jsonData.lastName === "") {
+                toast.info('Please fill Last Name')
+            }
+            else {
+                fetch('http://localhost:8888/signup', {
 
-            })
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'accept': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+
+                }).then((result) => {
+                    result.json().then((Response) => {
+                     
+                      if(Response.Output=="Already have account"){
+                        toast.success("Already have account Please sign in")
+                      }
+                      else{
+                        toast.success("Sign Up Succesfull")
+                      }
+                    })
+                  })
+                
+                
+            }
+        } else {
+            alert("Check Your password not maching ")
+            toast.error('Already have account with this email ID')
         }
-    }else{
-        alert("Check Your password not maching ")
-    }
     }
 
     return (
@@ -188,87 +202,6 @@ function Signupcomponent() {
                 </div>
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* 
-            <div className="container">
-                <div className="row justify-content-md-center">
-                    <h1>Create your account now </h1>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <input type="text" value={FirstName}
-                            onChange={handleFirstNameChange} placeholder="First Name" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <input type="text" value={LastName}
-                            onChange={handleLastNameChange} placeholder="Last Name" />
-                    </div>
-
-                    <div className="grid">
-                        <i className="fas fa-envelope-square" />
-                        <input type="email" value={email}
-                            onChange={handleEmailChange}
-                            placeholder="Enter your email" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <input type="password" value={password}
-                            onChange={handlePasswordChange} placeholder="Enter your password" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <input type="text" value={MobileNumber}
-                            onChange={handleMobileNumberChange} placeholder="Mobile Number" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <label>DOB</label>
-                        <input type="date" value={DateOfBirth}
-                            onChange={handleDateOfBirthChange} placeholder="DOB" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <label>Gender</label>
-                        <input type="text" value={Gender}
-                            onChange={handleGenderChange} placeholder="gender" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <input type="text" value={Nationality}
-                            onChange={handleNationalityChange} placeholder="Nationality" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <input type="text" value={State}
-                            onChange={handleStateChange} placeholder="State" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <input type="text" value={District}
-                            onChange={handleDistrictChange} placeholder="District" />
-                    </div>
-                    <div className="grid">
-                        <i className="fas fa-key" />
-                        <input type="text" value={Taluka}
-                            onChange={handleTalukaChange} placeholder="Taluka" />
-                    </div>
-                    <button className="btn" onClick={handleClick}>Submit</button>
-                </div>
-            </div> */}
         </>
 
     );

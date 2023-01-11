@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MainLogo from "./pics/MainLogo.png";
 function Headercomponent() {
@@ -8,6 +8,9 @@ function Headercomponent() {
         alert("cleaning")
         localStorage.clear();
         window.location.reload()
+    }
+    function Profile(){
+        navigate("/userprofile")
     }
     return (
         <>
@@ -48,7 +51,7 @@ function Headercomponent() {
                                 </li> */}
                                 <li>
                                     {/* <a href="">{user.firstName}</a> */}
-                                    <a>Welcome {user.firstName}</a>
+                                    <a onClick={() =>Profile()}>Welcome {user.firstName}</a>
                                 </li>
                                 <li>
                                     <a onClick={() => signOut()}> LogOut</a>
