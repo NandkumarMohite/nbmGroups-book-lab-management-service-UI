@@ -312,6 +312,9 @@ footer{
 
 /* ______________________________________login page css____________________________________________________________________ */
 
+.loginform{
+  height: 70vh;
+}
 body {
     background-color: #F3EBF6;
     /* font-family: 'Ubuntu', sans-serif; */
@@ -422,6 +425,13 @@ a {
 /* ______________________________________login page css ends here____________________________________________________________________ */
 
 /*  */
+
+
+/* ______________________________________signup page css start here____________________________________________________________________ */
+
+.signup{
+  height: 77vh;
+}
 .first{
 width:100%;
 }
@@ -552,11 +562,8 @@ body {
 	
 	content: none; 
 }
+/* ______________________________________signup page css ends here____________________________________________________________________ */
 
-/* #progressbar li.active:before,  #progressbar li.active:after{
-	background: #27AE60;
-	color: white;
-} */
 
 
 
