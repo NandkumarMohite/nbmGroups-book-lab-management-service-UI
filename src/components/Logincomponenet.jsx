@@ -17,41 +17,64 @@ function Logincomponenet() {
     "emailId": email,
     "password": password
   }
-function handleClick(){
-  fetch('http://localhost:8888/findingtheuser', {
+  function handleClick() {
+    fetch('http://localhost:8888/findingtheuser', {
 
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-      'accept': 'application/json'
-    },
-    body: JSON.stringify(jsonData)
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      },
+      body: JSON.stringify(jsonData)
 
+    }).then((result) => {
+      result.json().then((Response) => {
+          if (Response.emailId != null) {
+              alert("Signed In");
+              localStorage.setItem('UserInformation', JSON.stringify(Response))
+              window.location.reload()
+          }
+      })
   })
-}
+  }
+  
 
 
   return (
     <>
-    <div className="pyar">
-      <div className="container">
-        <div className="row justify-content-md-center">
-          <h1>Login </h1>
-          <div className="grid">
-            <i className="fas fa-key" />
-            <input type="emailId" value={email}
-              onChange={handleEmailChange} placeholder="Email Id" />
+      
+        <div className="LoginPage">
+          <div className="main">
+            <p className="sign" align="center">
+              Login{" "}
+            </p>
+            <form className="form1">
+              <input
+                className="un "
+                type="email"
+                align="center"value={email}
+                onChange={handleEmailChange} placeholder="Email Id" 
+              />
+              <input
+                className="pass"
+                type="password"
+                align="center"value={password}
+                onChange={handlePasswordChange} placeholder="Password"
+              />
+              <a className="submit" align="center" onClick={handleClick}>
+                Login
+              </a>
+              <p className="forgot" align="center">
+                <a href="#">Forgot Password?</a>
+              </p>
+              <a href="#"></a>
+            </form>
           </div>
-          <div className="grid">
-            <i className="fas fa-key" />
-            <input type="Passsword" value={password}
-              onChange={handlePasswordChange} placeholder="Password" />
-          </div>
-          <button className="btn" onClick={handleClick}>Submit</button>
+          <a href="#"></a>
         </div>
-      </div>
-      </div>
+        
+
     </>
   );
 }
