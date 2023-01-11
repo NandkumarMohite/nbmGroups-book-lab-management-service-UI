@@ -1,12 +1,12 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function Deleteuserinformationcomponent() {
 
-    let emailId='n.b.mohite88@gmail.com';
-   let password2='Raju@2810';
-    
-   const [User, setUser] = useState([]);
-   const [email, setEmail] = useState("");
+    let emailId = 'n.b.mohite88@gmail.com';
+    let password2 = 'Raju@2810';
+
+    const [User, setUser] = useState([]);
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [FirstName, setFirstName] = useState("");
     const [LastName, setLastName] = useState("");
@@ -17,32 +17,32 @@ function Deleteuserinformationcomponent() {
     const [Taluka, setTaluka] = useState("");
     const [Gender, setGender] = useState("");
     const [DateOfBirth, setDateOfBirth] = useState("");
- 
-   
+
+
     var jsonData = {
 
         "emailId": emailId,
-        "password":password2 
-      }
+        "password": password2
+    }
 
-      var deletejsonData = {
+    var deletejsonData = {
 
         "emailId": email,
-        "password":password 
-      }
-     
+        "password": password
+    }
+
 
     useEffect(() => {
 
-        fetch("http://localhost:8888/findingtheuser",{
-             method: 'POST',
-              mode: 'cors',
-              headers: {
+        fetch("http://localhost:8888/findingtheuser", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
                 'Content-Type': 'application/json',
                 'accept': 'application/json'
-              },
-              body: JSON.stringify(jsonData)
-        } ).then((result) => {
+            },
+            body: JSON.stringify(jsonData)
+        }).then((result) => {
             result.json().then((Response) => {
                 setUser(Response);
                 setFirstName(Response.firstName)
@@ -61,27 +61,27 @@ function Deleteuserinformationcomponent() {
         })
     }, [])
 
-    function deleteUser(){
-        fetch("http://localhost:8888/deleteuser",{
-             method: 'POST',
-              mode: 'cors',
-              headers: {
+    function deleteUser() {
+        fetch("http://localhost:8888/deleteuser", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
                 'Content-Type': 'application/json',
                 'accept': 'application/json'
-              },
-              body: JSON.stringify(jsonData)
-        } ).then((result) => {
+            },
+            body: JSON.stringify(jsonData)
+        }).then((result) => {
             result.json().then((Response) => {
-                if(Response.emailId==null){
+                if (Response.emailId == null) {
                     alert("Delted")
-                    window.location.reload()  
+                    window.location.reload()
                 }
             })
         })
     }
-        
-    
-    
+
+
+
     return (
         <>
             <>
@@ -91,7 +91,7 @@ function Deleteuserinformationcomponent() {
                         <div className="grid">
                             <i className="fas fa-key" />
                             <input type="text" value={FirstName}
-                                />
+                            />
                         </div>
                         <div className="grid">
                             <i className="fas fa-key" />

@@ -59,7 +59,7 @@ function Headercomponent() {
                         ) : (
                             <>
                                 <li>
-                                    <a onClick={() => navigate("/signUp")}>Sign Up</a>
+                                    <a onClick={() => navigate("/signuppage")}>Sign Up</a>
                                 </li>
                                 <li>
                                     <a onClick={() => navigate("/LogIn")}> Log in</a>
