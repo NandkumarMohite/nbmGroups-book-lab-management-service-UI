@@ -1,5 +1,6 @@
 import { ToastContainer, toast } from 'react-toastify';
 import React, { useState, useEffect } from "react";
+import { wait } from '@testing-library/user-event/dist/utils';
 
 
 
@@ -90,8 +91,29 @@ function Userprofilecomponent() {
     const handleTalukaChange = (e) => {
         setTaluka(e.target.value);
     };
+    const handleSportChange = (e) => {
+        setSport(e.target.value);
+    };
+    const handleIndoorChange = (e) => {
+        setIndoor(e.target.value);
+    };
+    const handleAuthorChange = (e) => {
+        setAuthor(e.target.value);
+    };
+    const handlePlayerChange = (e) => {
+        setPlayer(e.target.value);
+    };
+    const handleNovelChange = (e) => {
+        setNovel(e.target.value);
+    };
+    const handleHobilesChange = (e) => {
+        setHobiles(e.target.value);
+    };
 
+    var findhobies ={
 
+        "userId":13
+    };
 
     var jsonData = {
 
@@ -134,7 +156,73 @@ function Userprofilecomponent() {
 
             })
         })
+
+      
+        
+        fetch("http://localhost:8888/findhobies", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+            },
+            body: JSON.stringify(findhobies)
+        }).then((result) => {
+            result.json().then((Response) => {
+                setUser(Response);
+               setSport(Response.sport);
+               setIndoor(Response.indoor);
+               setAuthor(Response.author);
+               setNovel(Response.novel);
+               setSport(Response.sport);
+               setHobiles(Response.hobiles);
+               setPlayer(Response.player);
+
+            })
+        })
     }, [])
+
+
+   var jsonDataHobies={
+
+     "userId":UserID,
+	 "sport":Sport,
+	 "indoor":Indoor,
+	  "author":	Author,
+	  "novel":Novel,
+	  "player":Player,
+	  "hobiles":Hobiles,
+
+   }
+
+    
+  function handleClickHobies() {
+    
+    fetch('http://localhost:8888/addhobbies', {
+
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      },
+      body: JSON.stringify(jsonDataHobies)
+
+    }).then((result) => {
+      result.json().then((Response) => {
+        console.log(Response.Output);
+       
+        if (Response.Output == "Hobbies Added Success") {
+       
+          alert("Hi")
+          localStorage.setItem('UserHobies', JSON.stringify(Response))
+       
+        } else {
+          toast.error("Some thing wents wrong")
+        }
+      })
+    })
+  }
 
 
 
@@ -387,7 +475,7 @@ function Userprofilecomponent() {
                                                 <td width="2%">:</td>
                                                 <td><div className="field field_v1">
                                                         <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
-                                                         value={Sport} style={{border: 'none', borderRadius: '0px', 
+                                                         value={Sport} onChange={handleSportChange}  style={{border: 'none', borderRadius: '0px', 
                                                          marginBottom: '0px', padding: '0px',height:'24px', 
                                                          textAlign: 'center', fontWeight: 'bold',
                                                          fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
@@ -400,7 +488,7 @@ function Userprofilecomponent() {
                                                 <td width="2%">:</td>
                                                 <td><div className="field field_v1">
                                                         <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
-                                                         value={Indoor} style={{border: 'none', borderRadius: '0px', 
+                                                         value={Indoor} onChange={handleIndoorChange}  style={{border: 'none', borderRadius: '0px', 
                                                          marginBottom: '0px', padding: '0px',height:'24px', 
                                                          textAlign: 'center', fontWeight: 'bold',
                                                          fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
@@ -412,7 +500,7 @@ function Userprofilecomponent() {
                                                 <td width="2%">:</td>
                                                 <td><div className="field field_v1">
                                                         <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
-                                                         value={Author} style={{border: 'none', borderRadius: '0px', 
+                                                         value={Author} onChange={handleAuthorChange}  style={{border: 'none', borderRadius: '0px', 
                                                          marginBottom: '0px', padding: '0px',height:'24px', 
                                                          textAlign: 'center', fontWeight: 'bold',
                                                          fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
@@ -424,7 +512,7 @@ function Userprofilecomponent() {
                                                 <td width="2%">:</td>
                                                 <td><div className="field field_v1">
                                                         <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
-                                                         value={Novel} style={{border: 'none', borderRadius: '0px', 
+                                                         value={Novel} onChange={handleNovelChange}  style={{border: 'none', borderRadius: '0px', 
                                                          marginBottom: '0px', padding: '0px',height:'24px', 
                                                          textAlign: 'center', fontWeight: 'bold',
                                                          fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
@@ -436,7 +524,7 @@ function Userprofilecomponent() {
                                                 <td width="2%">:</td>
                                                 <td><div className="field field_v1">
                                                         <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
-                                                         value={Player} style={{border: 'none', borderRadius: '0px', 
+                                                         value={Player} onChange={handlePlayerChange}  style={{border: 'none', borderRadius: '0px', 
                                                          marginBottom: '0px', padding: '0px',height:'24px', 
                                                          textAlign: 'center', fontWeight: 'bold',
                                                          fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
@@ -448,16 +536,19 @@ function Userprofilecomponent() {
                                                 <td width="2%">:</td>
                                                 <td><div className="field field_v1">
                                                         <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
-                                                         value={Hobiles} style={{border: 'none', borderRadius: '0px', 
+                                                         value={Hobiles} onChange={handleHobilesChange}  style={{border: 'none', borderRadius: '0px', 
                                                          marginBottom: '0px', padding: '0px',height:'24px', 
                                                          textAlign: 'center', fontWeight: 'bold',
                                                          fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
                                                             </span>
-                                                            </div></td>
+                                                            </div>
+                                                            </td>
                                             </tr>
 
                                         </tbody>
                                     </table>
+                                    <button onClick={handleClickHobies}>update</button>
+                                    {/* <input type="Button" onClick={handleClickHobies} >Update</input> */}
                                 </div>
 
                             </div>
