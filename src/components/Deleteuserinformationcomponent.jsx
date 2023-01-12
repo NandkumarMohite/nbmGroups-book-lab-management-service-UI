@@ -21,8 +21,8 @@ function Deleteuserinformationcomponent() {
 
     var jsonData = {
 
-        "emailId": emailId,
-        "password": password2
+        "emailId": "nbmohite88@gmail.com",
+        "password": "Raju@2810"
     }
 
     var deletejsonData = {

@@ -1,13 +1,149 @@
-import { ToastContainer, toast } from 'react-toastify'; 
+import { ToastContainer, toast } from 'react-toastify';
+import React, { useState, useEffect } from "react";
+
+
+
+// import React, { useState, useEffect } from "react";
 function Userprofilecomponent() {
+
+    const [User, setUser] = useState([]);
+    const [email, setEmail] = useState("-");
+    const [password, setPassword] = useState("-");
+    const [passwordcheck, setPasswordcheck] = useState("-");
+    const [FirstName, setFirstName] = useState("-");
+    const [LastName, setLastName] = useState("-");
+    const [MobileNumber, setMobileNumber] = useState("-");
+    const [State, setState] = useState("-");
+    const [District, setDistrict] = useState("-");
+    const [Nationality, setNationality] = useState("-");
+    const [Taluka, setTaluka] = useState("-");
+    const [Gender, setGender] = useState("-");
+    const [DateOfBirth, setDateOfBirth] = useState("-");
+    const [UserID, setUserID] = useState("-");
+
+
+    const [Religion, setReligion] = useState("-");
+    const [BloodGrp, setBloodGrp] = useState("-");
+    const [Address, setAddress] = useState("-");
+    const [Pincode, setPincode] = useState("-");
+
+    const [Sport, setSport] = useState("-");
+    const [Indoor, setIndoor] = useState("-");
+    const [Author, setAuthor] = useState("-");
+    const [Novel, setNovel] = useState("-");
+    const [Player, setPlayer] = useState("-");
+    const [Hobiles, setHobiles] = useState("-");
+
+    const [BookName, setBookName] = useState("-");
+    const [DateTaken, setDateTaken] = useState("-");
+    const [DateReturn, setDateReturn] = useState("-");
+
+
+
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+    const handlePasswordCheckChange = (e) => {
+        setPasswordcheck(e.target.value);
+    };
+    const handleFirstNameChange = (e) => {
+        setFirstName(e.target.value);
+    };
+    const handleLastNameChange = (e) => {
+        setLastName(e.target.value);
+    };
+    const handleMobileNumberChange = (e) => {
+        setMobileNumber(e.target.value);
+    };
+    const handleStateChange = (e) => {
+        setState(e.target.value);
+    };
+    const handleDistrictChange = (e) => {
+        setDistrict(e.target.value);
+    };
+    const handleNationalityChange = (e) => {
+        setNationality(e.target.value);
+    };
+    const handleGenderChange = (e) => {
+        setGender(e.target.value);
+    };
+    const handlePincodeChange = (e) => {
+        setPincode(e.target.value);
+    };
+    const handleAddressChange = (e) => {
+        setAddress(e.target.value);
+    };
+    const handleBloodGrpChange = (e) => {
+        setBloodGrp(e.target.value);
+    };
+    const handleReligionChange = (e) => {
+        setReligion(e.target.value);
+    };
+    const handleDateOfBirthChange = (e) => {
+        setDateOfBirth(e.target.value);
+    };
+    const handleTalukaChange = (e) => {
+        setTaluka(e.target.value);
+    };
+
+
+
+    var jsonData = {
+
+        "emailId": "sumit@gmail.com",
+        "password": "Raju@2810"
+    }
+
+
+
+    useEffect(() => {
+
+        fetch("http://localhost:8888/findingtheuser", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        }).then((result) => {
+            result.json().then((Response) => {
+                setUser(Response);
+                setFirstName(Response.firstName)
+                setLastName(Response.lastName)
+                setEmail(Response.emailId)
+                setPassword(Response.pasetPassword)
+                setMobileNumber(Response.mobileNumber)
+                setState(Response.state)
+                setDistrict(Response.district)
+                setTaluka(Response.taluka)
+                setDateOfBirth(Response.dateofBirth)
+                setNationality(Response.nationality)
+                setGender(Response.gender)
+                setUserID(Response.userId)
+                setPassword(Response.password)
+                setAddress(Response.address)
+                setBloodGrp(Response.bloodGrp)
+                setPincode(Response.pinCode)
+                setReligion(Response.religion)
+
+            })
+        })
+    }, [])
+
+
+
     return (
         <>
 
-            <div classname="Profile" style={{ display: 'flex'}}>
-                <form id="msform" style={{marginLeft:'140px',marginRight:'0px'}}>
+            <div classname="Profile" style={{ display: 'flex' }}>
+                <form id="msform" style={{ marginLeft: '140px', marginRight: '0px' }}>
                     <fieldset id="p1">
-                        {/* <h2 class="fs-title">Create your account</h2>
-      <h3 class="fs-subtitle">This is step 1</h3> */}
                         <div className="student-profile py-4">
                             <div className="container">
                                 <div className="row">
@@ -19,11 +155,27 @@ function Userprofilecomponent() {
                                                     src="https://source.unsplash.com/600x300/?student"
                                                     alt="student dp"
                                                 />
-                                                <h2 class="fs-title">Nandkumar Mohite</h2>
+                                                <h2 class="fs-title">
+
+                                                    <div className="page">
+                                                        <div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={FirstName+" "+LastName} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px', fontSize: 'larger', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+
+                                                </h2>
                                             </div>
                                             <div className="card-body">
                                                 <p className="mb-0">
-                                                    <strong className="pr-1">User ID:</strong>321000001
+                                                    <strong className="pr-1">User ID:</strong>{UserID}
+                                                    
+                                                    
                                                 </p>
                                                 <p className="mb-0">
                                                     <strong className="pr-1">Number of Book:</strong>4
@@ -47,39 +199,84 @@ function Userprofilecomponent() {
                                                         <tr>
                                                             <th width="30%">Email Id</th>
                                                             <td width="2%">:</td>
-                                                            <td>n.b.mohite88@gmail.com</td>
+                                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={email} onChange={handleEmailChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                        </div></td>
                                                         </tr>
                                                         <tr>
+
+                                                            
                                                             <th width="30%">Mobile Number</th>
                                                             <td width="2%">:</td>
-                                                            <td>9834900568</td>
+                                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={MobileNumber} onChange={handleMobileNumberChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                        </div></td>
                                                         </tr>
                                                         <tr>
                                                             <th width="30%">Password</th>
                                                             <td width="2%">:</td>
-                                                            <td>2020</td>
+                                                            <td><div className="field field_v1">
+                                                        <input type="password" id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={password} onChange={handlePasswordChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <th width="30%">Gender</th>
                                                             <td width="2%">:</td>
-                                                            <td>Male</td>
+                                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Gender} onChange={handleGenderChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
                                                         </tr>
                                                         <tr>
                                                             <th width="30%">Religion</th>
                                                             <td width="2%">:</td>
-                                                            <td>Group</td>
+                                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Religion} onChange={handleReligionChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
                                                         </tr>
                                                         <tr>
                                                             <th width="30%">blood</th>
                                                             <td width="2%">:</td>
-                                                            <td>B+</td>
+                                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={BloodGrp} onChange={handleBloodGrpChange}  style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
                                                         </tr>
 
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        {/* <div style={{ height: 26 }} /> */}
+
                                     </div>
                                 </div>
                             </div>
@@ -87,43 +284,86 @@ function Userprofilecomponent() {
                     </fieldset>
                 </form>
 
-                <form id="msform" style={{marginLeft:'0px',marginRight:'0px'}}>
+                <form id="msform" style={{ marginLeft: '0px', marginRight: '0px' }}>
                     <fieldset id="p1">
-                        <h2 class="fs-title">Other Information</h2>
+                        <h2 class="fs-title">Address</h2>
                         <h3 class="fs-subtitle">you can fill the remaining one</h3>
                         <div className="student-profile py-4">
                             <div className="card-body pt-0">
                                 <table className="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th width="30%">Email Id</th>
+                                            <th width="30%">Nationality</th>
                                             <td width="2%">:</td>
-                                            <td>n.b.mohite88@gmail.com</td>
+                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Nationality} onChange={handleNationalityChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
                                         </tr>
                                         <tr>
-                                            <th width="30%">Mobile Number</th>
+                                            <th width="30%">State</th>
                                             <td width="2%">:</td>
-                                            <td>9834900568</td>
+                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={State} onChange={handleStateChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
                                         </tr>
                                         <tr>
-                                            <th width="30%">Password</th>
+                                            <th width="30%">District</th>
                                             <td width="2%">:</td>
-                                            <td>2020</td>
+                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={District} onChange={handleDistrictChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
                                         </tr>
                                         <tr>
-                                            <th width="30%">Gender</th>
+                                            <th width="30%">Taluka</th>
                                             <td width="2%">:</td>
-                                            <td>Male</td>
+                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Taluka} onChange={handleTalukaChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
                                         </tr>
                                         <tr>
-                                            <th width="30%">Religion</th>
+                                            <th width="30%">Address</th>
                                             <td width="2%">:</td>
-                                            <td>Group</td>
+                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Address} onChange={handleAddressChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
                                         </tr>
                                         <tr>
-                                            <th width="30%">blood</th>
+                                            <th width="30%">Pin Code</th>
                                             <td width="2%">:</td>
-                                            <td>B+</td>
+                                            <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Pincode} onChange={handlePincodeChange} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div>
+                                                            </td>
                                         </tr>
 
                                     </tbody>
@@ -133,63 +373,205 @@ function Userprofilecomponent() {
                         </div>
                     </fieldset>
                 </form>
+                <div className="blocking" style={{ display: 'block' }}>
+                    <form id="msform" style={{ marginLeft: '0px', marginRight: '0px' }}>
+                        <fieldset id="p1">
+                            <h2 class="fs-title">Hobbies</h2>
+                            <h3 class="fs-subtitle">you can fill the remaining one</h3>
+                            <div className="student-profile py-4">
+                                <div className="card-body pt-0">
+                                    <table className="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th width="30%">Sport</th>
+                                                <td width="2%">:</td>
+                                                <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Sport} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div>
+                                                            </td>
+                                            </tr>
+                                            <tr>
+                                                <th width="30%">Indoor</th>
+                                                <td width="2%">:</td>
+                                                <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Indoor} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="30%">Author</th>
+                                                <td width="2%">:</td>
+                                                <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Author} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="30%">Novel</th>
+                                                <td width="2%">:</td>
+                                                <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Novel} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="30%">Player</th>
+                                                <td width="2%">:</td>
+                                                <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Player} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="30%">hobiles</th>
+                                                <td width="2%">:</td>
+                                                <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={Hobiles} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                            </tr>
 
-                <form id="msform" style={{marginLeft:'0px',marginRight:'0px'}}>
-                    <fieldset id="p1">
-                        <h2 class="fs-title">Other Information</h2>
-                        <h3 class="fs-subtitle">you can fill the remaining one</h3>
-                        <div className="student-profile py-4">
-                            <div className="card-body pt-0">
-                                <table className="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <th width="30%">Email Id</th>
-                                            <td width="2%">:</td>
-                                            <td>n.b.mohite88@gmail.com</td>
-                                        </tr>
-                                        <tr>
-                                            <th width="30%">Mobile Number</th>
-                                            <td width="2%">:</td>
-                                            <td>9834900568</td>
-                                        </tr>
-                                        <tr>
-                                            <th width="30%">Password</th>
-                                            <td width="2%">:</td>
-                                            <td>2020</td>
-                                        </tr>
-                                        <tr>
-                                            <th width="30%">Gender</th>
-                                            <td width="2%">:</td>
-                                            <td>Male</td>
-                                        </tr>
-                                        <tr>
-                                            <th width="30%">Religion</th>
-                                            <td width="2%">:</td>
-                                            <td>Group</td>
-                                        </tr>
-                                        <tr>
-                                            <th width="30%">blood</th>
-                                            <td width="2%">:</td>
-                                            <td>B+</td>
-                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                    </tbody>
-                                </table>
                             </div>
+                        </fieldset>
+                    </form>
 
-                        </div>
-                    </fieldset>
-                </form>
+
+
+
+
+                    <form id="msform" style={{ marginLeft: '-100%', marginRight: '0px', marginTop: '-7%' }}>
+                        <fieldset id="p1" style={{ paddingLeft: '85px', paddingRight: '85px', paddingBottom: '32px', width: '100px' }}>
+                            <h2 class="fs-title">Book History</h2>
+                            <h3 class="fs-subtitle">You can find your last 3 book history here</h3>
+                            <div className="student-profile py-4">
+                                <div className="card-body pt-0" style={{width:"530px"}}>
+                                    <div className="blokingtable" style={{ display: 'inline-flex' }}>
+                                        <table className="table table-bordered" >
+                                            <tbody>
+                                                <tr>
+                                                    <th width="30%">Book Name</th>
+                                                    <td width="2%">:</td>
+                                                    <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={BookName} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%">DateTaken</th>
+                                                    <td width="2%">:</td>
+                                                    <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={DateTaken} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%">DateReturn</th>
+                                                    <td width="2%">:</td>
+                                                    <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={DateReturn} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                                </tr>
+
+
+
+                                            </tbody>
+
+                                        </table>
+                                        <table className="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="30%">Book Name</th>
+                                                    <td width="2%">:</td>
+                                                    <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={BookName} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%">DateTaken</th>
+                                                    <td width="2%">:</td>
+                                                    <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={DateTaken} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%">DateReturn</th>
+                                                    <td width="2%">:</td>
+                                                    <td><div className="field field_v1">
+                                                        <input id="first-name" className="field__input" placeholder="e.g. Stanislav"
+                                                         value={DateReturn} style={{border: 'none', borderRadius: '0px', 
+                                                         marginBottom: '0px', padding: '0px',height:'24px', 
+                                                         textAlign: 'center', fontWeight: 'bold',
+                                                         fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}} />                                                            <span className="field__label-wrap" aria-hidden="true">
+                                                            </span>
+                                                            </div></td>
+                                                </tr>
+
+
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
 
-            <div>    
-        <h4 className="navheader" align="center">React-Toastify</h4>      
-        <button  className="btn btn-success btnspace" onClick={()=>toast.success('Success Message')}> Success Message</button>    
-        <button   className="btn btn-info btnspace" onClick={()=>toast.info('Info Message')}>Info Message</button>    
-        <button  className="btn btn-danger btnspace" onClick={()=>toast.error('Error Message')}>Error Message</button>    
-        <button  className="btn btn-warning btnspace" onClick={()=>toast.warning('Success Message')}>Warning Message</button>    
-        <ToastContainer />    
-      </div>    
         </>
     )
 } export default Userprofilecomponent;

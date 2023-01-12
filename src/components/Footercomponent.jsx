@@ -1,5 +1,6 @@
 import MainLogo from "./pics/MainLogo.png";
 function Footercomponent() {
+    
     return (
         <>
             <section className="footer">

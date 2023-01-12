@@ -1,13 +1,15 @@
 import React, { Profiler } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MainLogo from "./pics/MainLogo.png";
+import {  toast } from 'react-toastify'; 
+
 function Headercomponent() {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("UserInformation"));
     function signOut(){
-        alert("cleaning")
+       toast.success("Log out success")
         localStorage.clear();
-        window.location.reload()
+        navigate("/")
     }
     function Profile(){
         navigate("/userprofile")

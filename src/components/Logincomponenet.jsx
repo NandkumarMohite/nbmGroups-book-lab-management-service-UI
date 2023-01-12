@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'; 
+import Userprofilecomponent from "./Userprofilecomponent";
 
 function Logincomponenet() {
   const [email, setEmail] = useState("");
@@ -71,7 +72,9 @@ function Logincomponenet() {
           </fieldset>
         </form>
       </div>
-
+           <div className="Userprofilecomponent" >
+            <Userprofilecomponent emailId={email} password={password}/>
+            </div>
     </>
   );
 }

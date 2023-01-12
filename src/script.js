@@ -1,5 +1,3 @@
-import $ from "jquery"
-
 
 const nav = document.querySelector('.nav')
 window.addEventListener('scroll', fixNav)
@@ -10,6 +8,6 @@ function fixNav() {
     } else {
         nav.classList.remove('active')
     }
-}
+}export default fixNav
 
 
