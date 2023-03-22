@@ -10,6 +10,7 @@ import Headercomponent from "./components/Headercomponent"
 import Welcomecomponent from "./components/Welcomecomponent"
 import Footercomponent from "./components/Footercomponent";
 import Userprofilecomponent from "./components/Userprofilecomponent";
+import Userinformationcomponent from "./components/Userinformationcomponent";
 import { ToastContainer, toast } from 'react-toastify'; 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Welcomecomponent/>}></Route>
         <Route path="/signuppage" element={<Signupcomponent/>}></Route>
+        <Route path="/userIf" element={<Userinformationcomponent/>}></Route>
         <Route path="/login" element={<Logincomponenet/>}></Route>
         <Route path="/deleteuserinformation" element={<Deleteuserinformationcomponent/>}></Route>
         <Route path="/userprofile" element={<Userprofilecomponent/>}></Route>

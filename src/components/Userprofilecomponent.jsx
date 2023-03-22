@@ -110,21 +110,33 @@ function Userprofilecomponent() {
         setHobiles(e.target.value);
     };
 
-    var findhobies ={
-
-        "userId":13
-    };
-
-    var jsonData = {
-
-        "emailId": "sumit@gmail.com",
-        "password": "Raju@2810"
-    }
+  
+   
 
 
 
     useEffect(() => {
 
+        let UserInformation= JSON.parse(window.localStorage.getItem('UserInformation'));
+         const emailId=UserInformation.emailId
+        const password=UserInformation.password
+      
+        console.log(UserInformation)
+    
+        var findhobies ={
+    
+            "userId":UserInformation.userId
+        }
+    
+       
+        var jsonData = {
+    
+            "emailId": UserInformation.emailId,
+            "password": UserInformation.password
+            }
+            
+
+            console.log(jsonData)   
         fetch("http://localhost:8888/findingtheuser", {
             method: 'POST',
             mode: 'cors',
